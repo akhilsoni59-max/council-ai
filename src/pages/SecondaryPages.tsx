@@ -1,5 +1,4 @@
-import { ArrowRight, BarChart3, Bell, Bookmark, Check, CreditCard, FileText, FolderKanban, Lock, Plus, Settings, SlidersHorizontal, UserRound } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ArrowRight, BarChart3, Bell, Bookmark, CreditCard, FileText, FolderKanban, Lock, Plus, Settings, SlidersHorizontal, UserRound } from 'lucide-react';
 import { projects } from '../services/mockConversationService';
 import { mockUsage, mockUser } from '../services/mockUserService';
 
@@ -49,23 +48,6 @@ export function SettingsPage() {
         <section className="settings-card"><div className="settings-card-head"><span className="settings-avatar">AS</span><div><h3>{mockUser.name}</h3><p>Frontend demo profile</p></div><button className="button secondary">Change photo</button></div><label><span>Full name</span><input value={mockUser.name} readOnly /></label><label><span>Email address</span><input value={mockUser.email} readOnly /></label><div className="setting-row"><div><strong>Default response style</strong><p>Choose how the final synthesis should be presented.</p></div><select defaultValue="Balanced"><option>Balanced</option><option>Concise</option><option>Detailed</option><option>Technical</option></select></div><div className="setting-row"><div><strong>Save source responses</strong><p>Keep all independent answers alongside the final synthesis.</p></div><button className="toggle active" aria-label="Save source responses"><i /></button></div><div className="settings-actions"><button className="button primary">Save demo preferences</button><span><Settings size={14} /> Stored locally for this preview</span></div></section>
       </div>
     </PageFrame>
-  );
-}
-
-export function PricingPage() {
-  const navigate = useNavigate();
-  return (
-    <div className="standalone-pricing">
-      <div className="pricing-page-head"><p className="eyebrow">Preview pricing — not yet active</p><h1>Choose how your council grows.</h1><p>Billing is not connected. These cards preview the plans planned for future backend integration.</p></div>
-      <div className="pricing-grid compact">
-        {[
-          ['Free', '$0', ['Limited demo queries', 'Four source responses', 'Claude final synthesis', 'Basic chat history']],
-          ['Pro', '$24', ['Higher future limits', 'Projects', 'File analysis', 'Advanced synthesis controls', 'Priority processing']],
-          ['Team', '$49', ['Shared workspaces', 'Team projects', 'Admin controls', 'Usage reporting']],
-        ].map(([name, price, features], index) => <article className={index === 1 ? 'recommended' : ''} key={String(name)}>{index === 1 && <span className="recommended-label">Recommended preview</span>}<h3>{String(name)}</h3><div className="price"><strong>{String(price)}</strong>{price !== '$0' && <span>/ user / month</span>}</div><button className={`button ${index === 1 ? 'primary' : 'secondary'} full`} onClick={() => window.alert('Billing will be available after backend integration.')}>Preview {String(name)}</button><ul>{(features as string[]).map((feature) => <li key={feature}><Check size={15} />{feature}</li>)}</ul></article>)}
-      </div>
-      <button className="text-link pricing-back" onClick={() => navigate('/app')}>Return to interactive demo <ArrowRight size={16} /></button>
-    </div>
   );
 }
 

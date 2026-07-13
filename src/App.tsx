@@ -5,8 +5,7 @@ import { DemoSettings } from './components/DemoSettings';
 import { Sidebar } from './components/Sidebar';
 import { Toast } from './components/Toast';
 import { DashboardPage } from './pages/DashboardPage';
-import { LandingPage } from './pages/LandingPage';
-import { PricingPage, ProjectsPage, SavedPage, SettingsPage, UsagePage } from './pages/SecondaryPages';
+import { ProjectsPage, SavedPage, SettingsPage, UsagePage } from './pages/SecondaryPages';
 import type { SimulationMode } from './types';
 
 function AppWorkspace() {
@@ -30,22 +29,22 @@ function AppWorkspace() {
   }, [toast]);
 
   const pageTitle: Record<string, string> = {
-    '/app/projects': 'Projects',
-    '/app/saved': 'Saved answers',
-    '/app/usage': 'Usage',
-    '/app/settings': 'Settings',
+    '/projects': 'Projects',
+    '/saved': 'Saved answers',
+    '/usage': 'Usage',
+    '/settings': 'Settings',
   };
-  const title = location.pathname === '/app' ? conversationTitle : pageTitle[location.pathname] ?? 'Council AI';
+  const title = location.pathname === '/' ? conversationTitle : pageTitle[location.pathname] ?? 'Council AI';
 
   const newChat = () => {
-    navigate('/app');
+    navigate('/');
     setPreloadedConversation(null);
     setResetKey((key) => key + 1);
     setDrawerOpen(false);
   };
 
   const openPreloadedConversation = (prompt: string) => {
-    navigate('/app');
+    navigate('/');
     setPreloadedConversation((current) => ({ prompt, key: (current?.key ?? 0) + 1 }));
     setDrawerOpen(false);
   };
@@ -61,6 +60,7 @@ function AppWorkspace() {
           <Route path="saved" element={<SavedPage />} />
           <Route path="usage" element={<UsagePage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
       <DemoSettings open={settingsOpen} mode={mode} onMode={(newMode) => { setMode(newMode); notify(`Next request: ${newMode.replace('-', ' ')}`); }} onClose={() => setSettingsOpen(false)} />
@@ -70,12 +70,5 @@ function AppWorkspace() {
 }
 
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/pricing" element={<PricingPage />} />
-      <Route path="/app/*" element={<AppWorkspace />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
-  );
+  return <AppWorkspace />;
 }

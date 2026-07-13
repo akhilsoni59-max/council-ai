@@ -1,6 +1,6 @@
 # Council AI frontend demo
 
-A frontend-only product demonstration for a multi-model AI council. The interface simulates four independent model responses followed by a Claude synthesis; it does not make network requests to AI providers.
+A frontend-only product demonstration for a multi-model AI council. It opens directly into the chat workspace, simulates four independent model responses followed by a Claude synthesis, and does not make network requests to AI providers.
 
 ## Run locally
 

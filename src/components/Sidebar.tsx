@@ -23,9 +23,9 @@ type Props = {
 };
 
 const navItems = [
-  { to: '/app/projects', label: 'Projects', icon: FolderClosed },
-  { to: '/app/saved', label: 'Saved answers', icon: Bookmark },
-  { to: '/app/usage', label: 'Usage', icon: BarChart3 },
+  { to: '/projects', label: 'Projects', icon: FolderClosed },
+  { to: '/saved', label: 'Saved answers', icon: Bookmark },
+  { to: '/usage', label: 'Usage', icon: BarChart3 },
 ];
 
 const recentItems = recentConversations.flatMap(({ items }) => items);
@@ -75,7 +75,7 @@ export function Sidebar({ collapsed, drawerOpen, onCollapse, onCloseDrawer, onNe
         )}
 
         <div className="sidebar-bottom">
-          <NavLink to="/app/settings" className={({ isActive }) => `sidebar-settings ${isActive ? 'active' : ''}`} onClick={onCloseDrawer}>
+          <NavLink to="/settings" className={({ isActive }) => `sidebar-settings ${isActive ? 'active' : ''}`} onClick={onCloseDrawer}>
             <Settings size={17} aria-hidden="true" />
             {!collapsed && <span>Settings</span>}
           </NavLink>
